@@ -1,0 +1,57 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('./Images/BG.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: poppins, sans-serif;
+}
+.contact-form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(30, 90, 250, 0.3);
+    max-width: 600px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+    color: #000;
+}
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: #f0f5ff;
+    font-size: 16px;
+}
+.input-field:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(30, 90, 250, 0.5);
+}
+.submit-btn {
+    background: #000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+

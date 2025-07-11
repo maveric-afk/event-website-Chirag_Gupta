@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-Registration</title>
+    <link rel="stylesheet" href="event.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <form class="register-form">
+        <h2>Register</h2>
+        <input type="text" class="input-field" name="name" placeholder="Your Name" required>
+        <input type="text" class="input-field" name="number" placeholder="Your Number" required>
+        <input type="email" class="input-field" name="email" placeholder="Your Email" required>
+        <input type="text" class="input-field" name="Institute" placeholder="Your Institute" required>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div class="leaderboard">
+        <h1 style="color: aqua; margin-bottom: 1rem;">Leaderboard</h1>
+        <div class="label">
+        <h2>Name</h2>
+        <h2>Institute</h2>
+        <h2>Score</h2>
+    </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('.register-form');
+        const leaderboard = document.querySelector('.leaderboard');
+        const submit = document.querySelector('.submit-btn');
+
+        function handleRegister(e) {
+            let name = form[0].value;
+            let number = form[1].value;
+            let email = form[2].value;
+            let Institute = form[3].value;
+            let score = Math.floor(Math.random() * 50);
+
+            const participant = {
+                Name: name,
+                Number: number,
+                Email: email,
+                Institute: Institute,
+                Score: score,
+            }
+
+            let participants = JSON.parse(localStorage.getItem('participants')) || [];
+            participants.push(participant);
+            participants.sort((a, b) => b.Score - a.Score);
+            localStorage.setItem('participants', JSON.stringify(participants));
+
+        }
+        submit.addEventListener('click', handleRegister);
+
+        let participants=JSON.parse(localStorage.getItem("participants"));
+        for(let i=0;i<5;i++){
+            let div=document.createElement('div');
+            let name=document.createElement('h3');
+            name.innerText=`${participants[i].Name}`;
+             let Institute=document.createElement('h3');
+            Institute.innerText=`${participants[i].Institute}`;
+             let Score=document.createElement('h3');
+            Score.innerText=`${participants[i].Score}`;
+            div.insertAdjacentElement('beforeend',name);
+                        div.insertAdjacentElement('beforeend',Institute);
+            div.insertAdjacentElement('beforeend',Score);
+            div.style.display='flex';
+            div.style.gap='2.5rem'
+            leaderboard.insertAdjacentElement('beforeend',div);
+        }
+    </script>
+</body>
+
+</html>
